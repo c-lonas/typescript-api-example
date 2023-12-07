@@ -58,6 +58,19 @@ app.post('/Crud/createItem', (req, res) => {
 // Read    | (GET)
 app.get('/Crud/readItem', (req, res) => {
   console.log(`READ REQUEST`);
+
+  const id = req.body.id;
+
+  const item = item_list.find(x => x.id == id);
+
+  if (item) {
+    res.send(`Item: ${item.name} matches id #${id}`);
+    console.log(`Item: ${item.name} matches id #${id}`)
+  } else {
+    res.status(404).send(`Item with id #${id} not found`)
+  }
+  
+
 });
 
 // Update  | (PUT)
